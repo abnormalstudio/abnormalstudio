@@ -1,22 +1,23 @@
 import React from 'react';
-import Link from 'gatsby-link';
+
+import { Navigation, NavList, NavItem, NavLink } from '../elements/navigation';
 
 export default class Nav extends React.Component {
   render() {
     return (
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
-          <li>
-            <Link to="/about">ABOUT</Link>
-          </li>
-          <li>
-            <Link to="/contact">CONTACT</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navigation>
+        <NavList>
+          <NavItem>
+            <NavLink to="/">HOME</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/about">ABOUT</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/contact">CONTACT</NavLink>
+          </NavItem>
+        </NavList>
+      </Navigation>
     );
   }
 }

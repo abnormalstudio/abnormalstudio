@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from '../components/Nav';
+import '../styles/reset.css';
 import { Main } from '../elements/main';
 
 export default ({ children }) => (
