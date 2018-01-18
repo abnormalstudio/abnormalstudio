@@ -1,7 +1,7 @@
 import React from 'react';
 
 import HomeScene from '../HomeScene';
-import { Shader } from '../elements/home';
+import { Shader } from '../elements/content';
 
 export default class Index extends React.Component {
   componentDidMount() {

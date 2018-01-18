@@ -1,12 +1,22 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { padding, margin, fonts, colors } from './settings';
+
+const Abnormal = styled.h1`
+  font-family: ${fonts.headings};
+  font-size: 2.5rem;
+  line-height: 2.7rem;
+  padding-top: 3%;
+  padding-left: 10%;
+  color: ${colors.bluish};
+`;
 
 const Main = styled.main`
   margin: 0 auto;
+  margin-top: 3%;
   width: 75vw;
-  height: 60vh;
-  border: 1px solid #212121;
-  background: #212121;
+  height: 55vh;
+  background: ${colors.strongPurple};
   color: #ffffff;
 `;
 
-export { Main };
+export { Abnormal, Main };

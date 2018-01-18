@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import Link from 'gatsby-link';
 
+import { padding, margin, fonts, colors } from './settings';
+
 const Navigation = styled.nav`
   width: 100vw;
-  margin-top: 100px;
+  margin-top: ${margin.medium};
 `;
 
 const NavList = styled.ul`
@@ -22,6 +24,14 @@ const NavItem = styled.li`
 
 const NavLink = styled(Link)`
   text-decoration: none;
+  font-family: ${fonts.nav};
+  color: ${colors.naranja};
+  transition: all 1s ease;
+
+  &:hover {
+    text-decoration: line-through;
+    color: ${colors.hover};
+  }
 `;
 
 export { Navigation, NavList, NavItem, NavLink };
