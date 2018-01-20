@@ -1,11 +1,11 @@
-import * as THREE from 'three';
-import SimplexNoise from './vendor/SimplexNoise';
-import GPUComputationRenderer from './vendor/GPUComputationRenderer';
+import * as THREE from "three";
+import SimplexNoise from "./vendor/SimplexNoise";
+import GPUComputationRenderer from "./vendor/GPUComputationRenderer";
 import {
   planeVertexShader,
   heightmapFragmentShader,
   smoothFragmentShader
-} from './vendor/Shaders';
+} from "./vendor/Shaders";
 
 const WIDTH = 254;
 
@@ -16,6 +16,7 @@ export default class HomeScene {
     this.mouseX = 0;
     this.mouseY = 0;
     this.mouseMoved = false;
+    this.looping = true;
 
     this.init();
     this.addLights();
@@ -25,19 +26,19 @@ export default class HomeScene {
     this.loop();
 
     // Adding required event listeners. Functions are placed at the bottom of the file
-    window.addEventListener('resize', () => this.handleResize(), false);
+    window.addEventListener("resize", () => this.handleResize(), false);
     this.container.addEventListener(
-      'mousemove',
+      "mousemove",
       e => this.handleMouseMove(e),
       false
     );
     this.container.addEventListener(
-      'touchstart',
+      "touchstart",
       e => this.handleTouch(e),
       false
     );
     this.container.addEventListener(
-      'touchmove',
+      "touchmove",
       e => this.handleTouch(e),
       false
     );
@@ -164,13 +165,13 @@ export default class HomeScene {
 
     const material = new THREE.ShaderMaterial({
       uniforms: THREE.UniformsUtils.merge([
-        THREE.ShaderLib['phong'].uniforms,
+        THREE.ShaderLib["phong"].uniforms,
         {
           heightmap: { value: null }
         }
       ]),
       vertexShader: planeVertexShader,
-      fragmentShader: THREE.ShaderChunk['meshphong_frag']
+      fragmentShader: THREE.ShaderChunk["meshphong_frag"]
     });
 
     material.lights = true;
@@ -219,7 +220,7 @@ export default class HomeScene {
     this.fillTexture(heightmap0);
 
     this.heightmapVariable = this.gpuCompute.addVariable(
-      'heightmap',
+      "heightmap",
       heightmapFragmentShader,
       heightmap0
     );
@@ -276,10 +277,19 @@ export default class HomeScene {
 
   loop() {
     this.render();
+
+    if (!this.looping) {
+      return;
+    }
+
     requestAnimationFrame(() => {
       this.loop();
     });
   }
+
+  stop = () => {
+    this.looping = false;
+  };
 
   // The camera is updated based on the position of the mouse. Particles rotate based on the time, and particles' color is changed based on the time as well
   render() {
