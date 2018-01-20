@@ -17,15 +17,15 @@ const margin = {
 };
 
 const fonts = {
-  headings: 'Michroma, sans-serif',
-  nav: 'Poppins, sans-serif',
-  body: 'Poppins, sans-serif'
+  headings: 'Arapey, serif',
+  nav: 'Antic Slab, serif',
+  body: 'Antic Slab, serif'
 };
 
 const colors = {
   white: '#FFF',
-  black: '#212121',
-  bluish: '#8785A2',
+  black: '#505050',
+  greyish: '#8785A2',
   aggressivePurple: '#780662',
   strongPurple: '#B30C7B',
   brightFucsia: '#FC00A3',

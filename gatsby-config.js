@@ -13,8 +13,9 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `michroma`,
-          `poppins\:300,400,400i,700` // you can also specify font weights and styles
+          `arapey`,
+          `antic slab\:300,400,400i,700`
+          // `poppins\:300,400,400i,700` // you can also specify font weights and styles
         ]
       }
     },

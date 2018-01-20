@@ -3,10 +3,9 @@ import { padding, margin, fonts, colors } from './settings';
 
 const Btn = styled.button`
   font-family: ${fonts.body};
-  font-size: 2.5rem;
-  line-height: 2.7rem;
-  color: ${colors.white};
-  border: 1px solid ${colors.orange};
+  font-size: 1.2rem;
+  line-height: 2.5rem;
+  color: ${colors.black};
   background: transparent;
   transition: all 1s ease;
 

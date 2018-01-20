@@ -25,8 +25,9 @@ const NavItem = styled.li`
 const NavLink = styled(Link)`
   text-decoration: none;
   font-family: ${fonts.nav};
-  color: ${colors.naranja};
-  transition: all 1s ease;
+  font-size: 1.2rem;
+  color: ${colors.black};
+  transition: text-decoration 1s ease;
 
   &:hover {
     text-decoration: line-through;

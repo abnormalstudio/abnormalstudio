@@ -1,4 +1,13 @@
 import * as THREE from 'three';
+import SimplexNoise from './vendor/SimplexNoise';
+import GPUComputationRenderer from './vendor/GPUComputationRenderer';
+import {
+  planeVertexShader,
+  heightmapFragmentShader,
+  smoothFragmentShader
+} from './vendor/Shaders';
+
+const WIDTH = 254;
 
 export default class HomeScene {
   constructor(container) {
@@ -6,18 +15,32 @@ export default class HomeScene {
     this.container = container;
     this.mouseX = 0;
     this.mouseY = 0;
+    this.mouseMoved = false;
 
     this.init();
     this.addLights();
-    this.addFog();
-    this.initParticles();
+    // this.addFog();
+    this.initPlane();
+    this.initRaycasting();
     this.loop();
 
     // Adding required event listeners. Functions are placed at the bottom of the file
     window.addEventListener('resize', () => this.handleResize(), false);
-    document.addEventListener('mousemove', e => this.handleMouseMove(e), false);
-    document.addEventListener('touchstart', e => this.handleResize(e), false);
-    document.addEventListener('touchmove', e => this.handleResize(e), false);
+    this.container.addEventListener(
+      'mousemove',
+      e => this.handleMouseMove(e),
+      false
+    );
+    this.container.addEventListener(
+      'touchstart',
+      e => this.handleTouch(e),
+      false
+    );
+    this.container.addEventListener(
+      'touchmove',
+      e => this.handleTouch(e),
+      false
+    );
   }
 
   width() {
@@ -37,75 +60,76 @@ export default class HomeScene {
       1,
       3000
     );
-    this.camera.position.set(0, 0, 1000);
-    this.camera.lookAt(this.scene.position);
+    this.camera.position.set(0, 0, 128);
+    // this.camera.lookAt(this.scene.position);
 
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true
     });
-    this.renderer.setPixelRatio = window.devicePixelRatio;
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(this.width(), this.height());
 
     this.container.appendChild(this.renderer.domElement);
+
+    this.raycaster = new THREE.Raycaster();
+    this.simplex = new SimplexNoise();
   }
 
   // Scene is not visible without lights.
+  // addLights() {
+  //   const ambient = new THREE.AmbientLight(0xb2ebf2, 0.7);
+  //   this.scene.add(ambient);
+
+  //   const sun1 = new THREE.DirectionalLight(0xffffff, 1.0);
+  //   sun1.position.set(300, 400, 175);
+  //   this.scene.add(sun1);
+
+  //   const sun2 = new THREE.DirectionalLight(0x40a040, 1.0);
+  //   sun2.position.set(-100, 350, -200);
+  //   this.scene.add(sun2);
+  // }
+
   addLights() {
-    const light = new THREE.AmbientLight(0xb2ebf2, 0.7);
-    this.scene.add(light);
+    // let light = new THREE.AmbientLight(0xffffff, 0.2);
+    // this.scene.add(light);
+
+    const hemlight = new THREE.HemisphereLight(0xfeee7d, 0x45d9fd, 0.3);
+    this.scene.add(hemlight);
+
+    let light1 = new THREE.DirectionalLight(0xffffff, 1);
+    light1.position.set(0, 0, 1);
+    light1.castShadow = true;
+    light1.shadowDarkness = 0.5;
+    light1.shadowCameraVisible = true;
+    this.scene.add(light1);
+
+    // fucsia
+    let light2 = new THREE.DirectionalLight(0xea21a2, 0.4);
+    light2.position.set(1, 1, -3);
+    light2.castShadow = true;
+    light2.shadowDarkness = 0.5;
+    light2.shadowCameraVisible = true;
+    this.scene.add(light2);
+
+    // light blue
+    let light3 = new THREE.DirectionalLight(0x9ffbfb, 0.4);
+    light3.position.set(3, -1, -2);
+    this.scene.add(light3);
+
+    // electric purple
+    let light4 = new THREE.DirectionalLight(0xa100ff, 0.2);
+    light4.position.set(-4, 1, -1);
+    this.scene.add(light4);
+
+    // green
+    let light5 = new THREE.DirectionalLight(0xa0e418, 0.1);
+    light5.position.set(-10, -6, -4);
+    this.scene.add(light5);
   }
 
   addFog() {
-    this.scene.fog = new THREE.FogExp2(0x000000, 0.0007);
-  }
-
-  // initParticles creates a basic geometry to which vertices are ultimately
-  // added in order to create an actual particle. In this case, there will be 1500
-  // particles in the scene, all of which have a different hue and a different size
-  initParticles() {
-    this.geometry = new THREE.Geometry();
-    this.numParticles = 1500;
-    this.particleVariations = [
-      { hsl: [1.0, 1, 0.5], size: 5 },
-      { hsl: [0.95, 1, 0.5], size: 4 },
-      { hsl: [0.9, 1, 0.5], size: 3 },
-      { hsl: [0.85, 1, 0.5], size: 2 },
-      { hsl: [0.8, 1, 0.5], size: 1 }
-    ];
-    this.materials = [];
-    this.createParticleVertices();
-    this.addParticles();
-  }
-
-  // Vertices create the ultimate shape. Each vertex is a point. The vertices
-  // are pushed to the geometry vertices to create the actual shape
-  createParticleVertices() {
-    for (let i = 0; i < this.numParticles; i++) {
-      let vertex = new THREE.Vector3();
-      vertex.x = Math.random() * 2000 - 1000;
-      vertex.y = Math.random() * 2000 - 1000;
-      vertex.z = Math.random() * 2000 - 1000;
-
-      this.geometry.vertices.push(vertex);
-    }
-  }
-
-  // The points material uses the size to rasterize an element. A 'Point' is a particle to which you need to pass a geometry (all the vertices together that created a shape) and a material (which in this case is an hsl colour). Each particle in 3d moves 3 planes: x, y, z. Here I'm setting the rotation of the particles to be based on a random number between 0 and 6.28 (this is in radiants but it actually means 360degrees)
-  addParticles() {
-    for (let i = 0; i < this.particleVariations.length; i++) {
-      this.materials[i] = new THREE.PointsMaterial({
-        size: this.particleVariations[i].size
-      });
-
-      const particles = new THREE.Points(this.geometry, this.materials[i]);
-
-      particles.rotation.x = Math.random() * (Math.PI * 2);
-      particles.rotation.y = Math.random() * (Math.PI * 2);
-      particles.rotation.z = Math.random() * (Math.PI * 2);
-
-      this.scene.add(particles);
-    }
+    this.scene.fog = new THREE.FogExp2(0xfffb85, 0.0007);
   }
 
   // Updating renderer and camera on resize
@@ -116,16 +140,139 @@ export default class HomeScene {
   }
 
   handleMouseMove(e) {
-    this.mouseX = e.clientX - this.width() / 2;
-    this.mouseY = e.clientY - this.height() / 2;
+    this.mouseMoved = true;
+    this.mouseX = e.offsetX / this.width() * 2 - 1;
+    this.mouseY = -(e.offsetY / this.height()) * 2 + 1;
   }
 
   handleTouch(e) {
     if (e.touches.length === 1) {
-      this.mouseX = e.touches[0].pageX - this.width() / 2;
-      this.mouseY = e.touches[0].pageY - this.height() / 2;
+      this.mouseMoved = true;
+      this.mouseX = e.touches[0].offsetX - this.width() / 2;
+      this.mouseY = -(e.touches[0].offsetY - this.height() / 2);
     }
   }
+
+  initPlane = () => {
+    const materialColor = 0xa2a9af;
+    const planeGeometry = new THREE.PlaneBufferGeometry(
+      512,
+      512,
+      WIDTH - 1,
+      WIDTH - 1
+    );
+
+    const material = new THREE.ShaderMaterial({
+      uniforms: THREE.UniformsUtils.merge([
+        THREE.ShaderLib['phong'].uniforms,
+        {
+          heightmap: { value: null }
+        }
+      ]),
+      vertexShader: planeVertexShader,
+      fragmentShader: THREE.ShaderChunk['meshphong_frag']
+    });
+
+    material.lights = true;
+
+    material.color = new THREE.Color(materialColor);
+    material.specular = new THREE.Color(0x111111);
+    material.shininess = 30;
+
+    material.uniforms.diffuse.value = material.color;
+    material.uniforms.specular.value = material.specular;
+    material.uniforms.shininess.value = Math.max(material.shininess, 1e-4);
+    material.uniforms.opacity.value = material.opacity;
+
+    material.defines.WIDTH = WIDTH.toFixed(1);
+    material.defines.BOUNDS = (512).toFixed(1);
+
+    this.planeUniforms = material.uniforms;
+
+    this.planeMesh = new THREE.Mesh(planeGeometry, material);
+    // this.planeMesh.rotation.x = -Math.PI / 6;
+    this.planeMesh.matrixAutoUpdate = false;
+    this.planeMesh.updateMatrix();
+
+    this.scene.add(this.planeMesh);
+  };
+
+  initRaycasting = () => {
+    const geometryRay = new THREE.PlaneBufferGeometry(512, 512, 8, 8);
+
+    this.meshRay = new THREE.Mesh(
+      geometryRay,
+      new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        visible: false
+      })
+    );
+    // this.meshRay.rotation.x = -Math.PI / 6;
+    this.meshRay.matrixAutoUpdate = false;
+    this.meshRay.updateMatrix();
+
+    this.scene.add(this.meshRay);
+
+    this.gpuCompute = new GPUComputationRenderer(WIDTH, WIDTH, this.renderer);
+
+    const heightmap0 = this.gpuCompute.createTexture();
+    this.fillTexture(heightmap0);
+
+    this.heightmapVariable = this.gpuCompute.addVariable(
+      'heightmap',
+      heightmapFragmentShader,
+      heightmap0
+    );
+    this.gpuCompute.setVariableDependencies(this.heightmapVariable, [
+      this.heightmapVariable
+    ]);
+
+    this.heightmapVariable.material.uniforms.mousePos = {
+      value: new THREE.Vector2(10000, 10000)
+    };
+    this.heightmapVariable.material.uniforms.mouseSize = { value: 20 };
+    this.heightmapVariable.material.uniforms.viscosityConstant = {
+      value: 0.03
+    };
+    this.heightmapVariable.material.defines.BOUNDS = (512).toFixed(1);
+
+    this.gpuCompute.init();
+
+    this.smoothShader = this.gpuCompute.createShaderMaterial(
+      smoothFragmentShader,
+      { texture: { value: null } }
+    );
+  };
+
+  fillTexture = texture => {
+    const waterMaxHeight = 10;
+
+    const noise = (x, y, z) => {
+      let multR = waterMaxHeight;
+      let mult = 0.025;
+      let r = 0;
+      for (let i = 0; i < 15; i++) {
+        r += multR * this.simplex.noise(x * mult, y * mult);
+        multR *= 0.53 + 0.025 * i;
+        mult *= 1.25;
+      }
+      return r;
+    };
+
+    const pixels = texture.image.data;
+    let p = 0;
+    for (let j = 0; j < WIDTH; j++) {
+      for (let i = 0; i < WIDTH; i++) {
+        const x = i * 128 / WIDTH;
+        const y = j * 128 / WIDTH;
+        pixels[p + 0] = noise(x, y, 123.4);
+        pixels[p + 1] = 0;
+        pixels[p + 2] = 0;
+        pixels[p + 3] = 1;
+        p += 4;
+      }
+    }
+  };
 
   loop() {
     this.render();
@@ -136,25 +283,28 @@ export default class HomeScene {
 
   // The camera is updated based on the position of the mouse. Particles rotate based on the time, and particles' color is changed based on the time as well
   render() {
-    const time = Date.now() * 0.00005; // Avoid rotating too fast
-
-    this.camera.position.x += (this.mouseX - this.camera.position.x) * 0.05;
-    this.camera.position.y += (this.mouseX - this.camera.position.x) * 0.05;
-    this.camera.lookAt(this.scene.position);
-
-    this.scene.children.forEach((child, i) => {
-      if (child instanceof THREE.Points) {
-        const direction = i < 4 ? 1 : -1;
-        child.rotation.y = time * (i + 1) * direction;
+    const uniforms = this.heightmapVariable.material.uniforms;
+    if (this.mouseMoved) {
+      this.raycaster.setFromCamera(
+        { x: this.mouseX, y: this.mouseY },
+        this.camera
+      );
+      const intersects = this.raycaster.intersectObject(this.meshRay);
+      if (intersects.length > 0) {
+        const point = intersects[0].point;
+        uniforms.mousePos.value.set(point.x, -point.y);
+      } else {
+        uniforms.mousePos.value.set(10000, 10000);
       }
-    });
+      this.mouseMoved = false;
+    } else {
+      uniforms.mousePos.value.set(10000, 10000);
+    }
 
-    // copied this func from somewhere. Dont remember where. Sorry 🙄
-    this.materials.forEach((material, i) => {
-      const hsl = this.particleVariations[i].hsl;
-      const hue = ((360 * (hsl[0] + time)) % 360) / 360;
-      material.color.setHSL(hue, hsl[1], hsl[2]);
-    });
+    this.gpuCompute.compute();
+    this.planeUniforms.heightmap.value = this.gpuCompute.getCurrentRenderTarget(
+      this.heightmapVariable
+    ).texture;
 
     this.renderer.render(this.scene, this.camera);
   }

@@ -12,8 +12,8 @@ const Aboutcontent = styled.section`
   display: block;
   margin: 0 auto;
   font-family: ${fonts.body};
-  font-size: 1.2rem;
-  line-height: 1.8rem;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,10 +21,26 @@ const Aboutcontent = styled.section`
   scroll-y: scroll;
 `;
 
+const Contactcontent = styled.section`
+  width: 60%;
+  height: 55vh;
+  display: block;
+  margin: 0 auto;
+  font-family: ${fonts.body};
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  scroll-y: scroll;
+`;
+
 const Para = styled.p`
-  width: 50%;
+  width: 80%;
   text-align: justify;
   margin-bottom: ${margin.small};
 `;
 
-export { Aboutcontent, Para, Shader };
+export { Aboutcontent, Contactcontent, Para, Shader };
