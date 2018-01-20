@@ -26,11 +26,11 @@ const colors = {
   white: '#FFF',
   black: '#505050',
   greyish: '#8785A2',
+  lightgrey: '#999999',
   aggressivePurple: '#780662',
-  strongPurple: '#B30C7B',
+  strongPurple: '#dd2476',
   brightFucsia: '#FC00A3',
-  hover: '#393E46',
-  naranja: '#F96D00'
+  naranja: '#ff512f'
 };
 
 export { padding, margin, fonts, colors };
