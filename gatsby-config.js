@@ -12,12 +12,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          `arapey`,
-          `jura:300,400,400i,700`
-          // `antic slab\:300,400,400i,700`
-          // `poppins\:300,400,400i,700` // you can also specify font weights and styles
-        ]
+        fonts: [`arapey`, `jura:300,400,400i,700`]
       }
     },
     `gatsby-plugin-react-helmet`
