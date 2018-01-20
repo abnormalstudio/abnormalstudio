@@ -18,8 +18,8 @@ const margin = {
 
 const fonts = {
   headings: 'Arapey, serif',
-  nav: 'Antic Slab, serif',
-  body: 'Antic Slab, serif'
+  nav: 'Jura, sans-serif',
+  body: 'Jura, sans-serif'
 };
 
 const colors = {

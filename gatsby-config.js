@@ -14,7 +14,8 @@ module.exports = {
       options: {
         fonts: [
           `arapey`,
-          `antic slab\:300,400,400i,700`
+          `jura:300,400,400i,700`
+          // `antic slab\:300,400,400i,700`
           // `poppins\:300,400,400i,700` // you can also specify font weights and styles
         ]
       }
