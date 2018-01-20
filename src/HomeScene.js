@@ -7,6 +7,7 @@ import {
   smoothFragmentShader
 } from "./vendor/Shaders";
 
+const BOUNDS = 1028;
 const WIDTH = 254;
 
 export default class HomeScene {
@@ -23,7 +24,7 @@ export default class HomeScene {
     // this.addFog();
     this.initPlane();
     this.initRaycasting();
-    this.loop();
+    this.start();
 
     // Adding required event listeners. Functions are placed at the bottom of the file
     window.addEventListener("resize", () => this.handleResize(), false);
@@ -77,28 +78,11 @@ export default class HomeScene {
     this.simplex = new SimplexNoise();
   }
 
-  // Scene is not visible without lights.
-  // addLights() {
-  //   const ambient = new THREE.AmbientLight(0xb2ebf2, 0.7);
-  //   this.scene.add(ambient);
-
-  //   const sun1 = new THREE.DirectionalLight(0xffffff, 1.0);
-  //   sun1.position.set(300, 400, 175);
-  //   this.scene.add(sun1);
-
-  //   const sun2 = new THREE.DirectionalLight(0x40a040, 1.0);
-  //   sun2.position.set(-100, 350, -200);
-  //   this.scene.add(sun2);
-  // }
-
   addLights() {
-    // let light = new THREE.AmbientLight(0xffffff, 0.2);
-    // this.scene.add(light);
-
-    const hemlight = new THREE.HemisphereLight(0xfeee7d, 0x45d9fd, 0.3);
+    const hemlight = new THREE.HemisphereLight(0xe5008d, 0xff070b, 0.5);
     this.scene.add(hemlight);
 
-    let light1 = new THREE.DirectionalLight(0xffffff, 1);
+    let light1 = new THREE.DirectionalLight(0xffffff, 0.5);
     light1.position.set(0, 0, 1);
     light1.castShadow = true;
     light1.shadowDarkness = 0.5;
@@ -106,7 +90,7 @@ export default class HomeScene {
     this.scene.add(light1);
 
     // fucsia
-    let light2 = new THREE.DirectionalLight(0xea21a2, 0.4);
+    let light2 = new THREE.DirectionalLight(0xea21a2, 0.8);
     light2.position.set(1, 1, -3);
     light2.castShadow = true;
     light2.shadowDarkness = 0.5;
@@ -117,16 +101,6 @@ export default class HomeScene {
     let light3 = new THREE.DirectionalLight(0x9ffbfb, 0.4);
     light3.position.set(3, -1, -2);
     this.scene.add(light3);
-
-    // electric purple
-    let light4 = new THREE.DirectionalLight(0xa100ff, 0.2);
-    light4.position.set(-4, 1, -1);
-    this.scene.add(light4);
-
-    // green
-    let light5 = new THREE.DirectionalLight(0xa0e418, 0.1);
-    light5.position.set(-10, -6, -4);
-    this.scene.add(light5);
   }
 
   addFog() {
@@ -155,10 +129,10 @@ export default class HomeScene {
   }
 
   initPlane = () => {
-    const materialColor = 0xa2a9af;
+    const materialColor = 0xcccccc;
     const planeGeometry = new THREE.PlaneBufferGeometry(
-      512,
-      512,
+      BOUNDS,
+      BOUNDS,
       WIDTH - 1,
       WIDTH - 1
     );
@@ -179,6 +153,8 @@ export default class HomeScene {
     material.color = new THREE.Color(materialColor);
     material.specular = new THREE.Color(0x111111);
     material.shininess = 30;
+    material.transparent = true;
+    material.opacity = 0.5;
 
     material.uniforms.diffuse.value = material.color;
     material.uniforms.specular.value = material.specular;
@@ -186,7 +162,7 @@ export default class HomeScene {
     material.uniforms.opacity.value = material.opacity;
 
     material.defines.WIDTH = WIDTH.toFixed(1);
-    material.defines.BOUNDS = (512).toFixed(1);
+    material.defines.BOUNDS = BOUNDS.toFixed(1);
 
     this.planeUniforms = material.uniforms;
 
@@ -199,7 +175,7 @@ export default class HomeScene {
   };
 
   initRaycasting = () => {
-    const geometryRay = new THREE.PlaneBufferGeometry(512, 512, 8, 8);
+    const geometryRay = new THREE.PlaneBufferGeometry(BOUNDS, BOUNDS, 8, 8);
 
     this.meshRay = new THREE.Mesh(
       geometryRay,
@@ -235,7 +211,7 @@ export default class HomeScene {
     this.heightmapVariable.material.uniforms.viscosityConstant = {
       value: 0.03
     };
-    this.heightmapVariable.material.defines.BOUNDS = (512).toFixed(1);
+    this.heightmapVariable.material.defines.BOUNDS = BOUNDS.toFixed(1);
 
     this.gpuCompute.init();
 
@@ -286,6 +262,11 @@ export default class HomeScene {
       this.loop();
     });
   }
+
+  start = () => {
+    this.looping = true;
+    this.loop();
+  };
 
   stop = () => {
     this.looping = false;
