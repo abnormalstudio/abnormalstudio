@@ -18,6 +18,8 @@
     "gatsby-plugin-sitemap": "^1.2.9",
     "gatsby-plugin-styled-components": "^2.0.4",
     "react-helmet": "^5.2.0",
+    "react-simple-line-icons": "^1.0.8",
+    "react-social": "^1.10.0",
     "styled-components": "^2.4.0",
     "three": "^0.89.0"
   }

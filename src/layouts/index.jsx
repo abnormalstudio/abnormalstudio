@@ -1,9 +1,10 @@
-import React from 'react';
-import Nav from '../components/Nav';
-import '../styles/reset.css';
-import '../styles/common.scss';
-import { Abnormal, Main } from '../elements/main';
-import { padding, margin, fonts, colors } from '../elements/settings';
+import React from "react";
+import Nav from "../components/Nav";
+import SocialIcons from "../components/SocialIcons";
+import "../styles/reset.css";
+import "../styles/common.scss";
+import { Abnormal, Main } from "../elements/main";
+import { padding, margin, fonts, colors } from "../elements/settings";
 
 export default ({ children }) => (
   <div
@@ -16,6 +17,7 @@ export default ({ children }) => (
     <Abnormal>
       ABNORMAL<br />studio
     </Abnormal>
+    <SocialIcons />
     <Main>{children()}</Main>
     <Nav />
   </div>

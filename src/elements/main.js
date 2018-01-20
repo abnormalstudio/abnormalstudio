@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { padding, margin, fonts, colors } from './settings';
+import styled from "styled-components";
+import { padding, margin, fonts, colors } from "./settings";
 
 const Abnormal = styled.h1`
   font-family: ${fonts.headings};
@@ -31,4 +31,11 @@ const Main = styled.main`
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `;
 
-export { Abnormal, Main };
+const SocialIcons = styled.section`
+  position: absolute;
+  left: ${padding.small};
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+export { Abnormal, Main, SocialIcons };
