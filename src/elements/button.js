@@ -5,14 +5,15 @@ import { padding, margin, fonts, colors } from "./settings";
 const shared = `
   font-family: ${fonts.body};
   font-size: 1.2rem;
-  line-height: 2.5rem;
-  color: ${colors.black};
+  color: ${colors.white};
   background: transparent;
+  border: 1px solid ${colors.white};
   transition: all 1s ease;
-
-  &:hover {
-    background: ${colors.orange};
-  }
+  margin: ${padding.mini};
+  padding: ${padding.mini} ${padding.superSmall};
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 `;
 
 const Btn = styled.a`

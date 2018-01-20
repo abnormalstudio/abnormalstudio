@@ -21,7 +21,12 @@ export default class About extends React.Component {
             Shopify
           </Para>
 
-          <Btn href="mailto:studio@abnormalstudio.com">Lets talk!</Btn>
+          <Btn
+            style={{ width: "125px" }}
+            href="mailto:studio@abnormalstudio.com"
+          >
+            Lets talk!
+          </Btn>
         </Aboutcontent>
       </div>
     );

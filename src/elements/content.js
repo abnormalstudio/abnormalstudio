@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { padding, margin, fonts, colors } from '../elements/settings';
+import styled, { css } from "styled-components";
+import { padding, margin, fonts, colors } from "../elements/settings";
 
 const Shader = styled.div`
   width: 100%;
@@ -39,8 +39,13 @@ const Contactcontent = styled.section`
 
 const Para = styled.p`
   width: 80%;
-  text-align: justify;
   margin-bottom: ${margin.small};
+
+  ${props =>
+    props.centered &&
+    css`
+      text-align: center;
+    `};
 `;
 
 export { Aboutcontent, Contactcontent, Para, Shader };
