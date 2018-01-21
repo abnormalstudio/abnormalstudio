@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { padding, margin, fonts, colors } from "../elements/settings";
+import styled, { css } from 'styled-components';
+import { padding, margin, fonts, colors } from '../elements/settings';
 
 const Shader = styled.div`
   width: 100%;
@@ -61,4 +61,16 @@ const Para = styled.p`
     `};
 `;
 
-export { Aboutcontent, Contactcontent, Para, Shader };
+const Linking = styled.a`
+  text-decoration: none;
+  font-family: ${fonts.nav};
+  font-size: 1.2rem;
+  color: ${colors.greyish};
+  transition: all 1s ease;
+
+  &:hover {
+    color: ${colors.white};
+  }
+`;
+
+export { Aboutcontent, Contactcontent, Para, Shader, Linking };

@@ -6,7 +6,7 @@ const Main = styled.main`
   margin-top: 3%;
   width: 75vw;
   height: 55vh;
-  color: ${colors.white};
+  color: #000;
   background: #ff512f; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
