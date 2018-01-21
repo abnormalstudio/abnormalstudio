@@ -26,12 +26,11 @@ const NavLink = styled(Link)`
   text-decoration: none;
   font-family: ${fonts.nav};
   font-size: 1.2rem;
-  color: ${colors.black};
-  transition: text-decoration 1s ease;
+  color: ${colors.greyish};
+  transition: all 1s ease;
 
   &:hover {
-    text-decoration: line-through;
-    color: ${colors.hover};
+    color: ${colors.white};
   }
 `;
 

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { padding, margin, fonts, colors } from "./settings";
+import styled from 'styled-components';
+import { padding, margin, fonts, colors } from './settings';
 
 const Abnormal = styled.h1`
   font-family: ${fonts.headings};
