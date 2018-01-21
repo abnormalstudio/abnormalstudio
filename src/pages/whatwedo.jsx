@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Aboutcontent, Para } from "../elements/content";
 import { Btn } from "../elements/button";
 
-export default class About extends React.Component {
+export default class Whatwedo extends React.Component {
   render() {
     return (
       <div>
