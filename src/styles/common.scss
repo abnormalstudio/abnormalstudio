@@ -34,3 +34,17 @@ a {
     -webkit-text-fill-color: transparent;
   }
 }
+
+.logoGrey {
+  fill: #ccc;
+  stroke: #999;
+  stroke-miterlimit: 10;
+  stroke-width: 0.5px;
+}
+.logoPink {
+  fill: #fc00a3;
+}
+
+svg {
+  width: 180px;
+}
