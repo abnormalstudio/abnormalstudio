@@ -1,13 +1,11 @@
-import React from 'react';
-import logo from '../images/AbLogo.svg';
-import Nav from '../components/Nav';
-import SocialIcons from '../components/SocialIcons';
-import '../styles/reset.css';
-import '../styles/common.scss';
-import { Abnormal, Main } from '../elements/main';
-import { Logo } from '../elements/logo';
-
-import { padding, margin, fonts, colors } from '../elements/settings';
+import React from "react";
+import Nav from "../components/Nav";
+import Logo from "../components/Logo";
+import SocialIcons from "../components/SocialIcons";
+import "../styles/reset.css";
+import "../styles/common.scss";
+import { Abnormal, Main } from "../elements/main";
+import { colors } from "../elements/settings";
 
 export default ({ children }) => (
   <div
@@ -17,9 +15,7 @@ export default ({ children }) => (
       background: `${colors.white}`
     }}
   >
-    <Abnormal>
-      <Logo src={logo} alt="abnormal logo" />
-    </Abnormal>
+    <Logo />
     <SocialIcons />
     <Main>{children()}</Main>
     <Nav />
