@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Contactcontent, Para } from '../elements/content';
+import { Contactcontent, Para, Linking } from '../elements/content';
 
 export default class Contact extends React.Component {
   render() {
@@ -15,7 +15,13 @@ export default class Contact extends React.Component {
 
           <Para>
             Drop us a line at{' '}
-            <a href="mailto:studio@abnormal.com.com">studio@abnormal.com</a>.
+            <Linking
+              href="mailto:studio@abnormal.com.com"
+              target="_blank"
+              style={{ color: `#FFF` }}
+            >
+              STUDIO@ABNORMALSTUDIO.COM
+            </Linking>
           </Para>
         </Contactcontent>
       </div>
