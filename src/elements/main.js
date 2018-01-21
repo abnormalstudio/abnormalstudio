@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { padding, margin, fonts, colors } from "./settings";
+import styled from 'styled-components';
+import { padding, margin, fonts, colors } from './settings';
 
 const Main = styled.main`
   margin: 0 auto;
@@ -7,16 +7,16 @@ const Main = styled.main`
   width: 75vw;
   height: 55vh;
   color: #000;
-  background: #ff512f; /* fallback for old browsers */
+  background: rgba(221, 36, 118, 1); /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #dd2476,
-    #ff512f
+    rgba(221, 36, 118, 0.9),
+    rgba(255, 81, 47, 0.7)
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #dd2476,
-    #ff512f
+    rgba(221, 36, 118, 0.9),
+    rgba(255, 81, 47, 0.7)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `;
 
