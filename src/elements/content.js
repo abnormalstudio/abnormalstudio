@@ -4,18 +4,18 @@ import { padding, margin, fonts, colors } from '../elements/settings';
 const Shader = styled.div`
   width: 100%;
   height: 100%;
-  background: #000000; /* fallback for old browsers */
+  background: rgba(0, 0, 0, 0.6); /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #ff070b,
     #e5008d,
-    #000000
+    #ff070b,
+    #f28a79
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #ff070b,
     #e5008d,
-    #000000
+    #ff070b,
+    #f28a79
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `;
 
