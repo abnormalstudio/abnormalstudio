@@ -24,9 +24,9 @@ export default class About extends React.Component {
           <Para>Do you have an idea?</Para>
 
           <Para centered>
-            <GatsbyBtn to="/whatwedo" style={{ width: '125px' }}>
+            {/* <GatsbyBtn to="/whatwedo" style={{ width: '125px' }}>
               What we do
-            </GatsbyBtn>
+            </GatsbyBtn> */}
             <Btn
               style={{ width: '125px' }}
               href="mailto:studio@abnormalstudio.com"
