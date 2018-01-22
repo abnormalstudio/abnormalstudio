@@ -1,21 +1,21 @@
-import React from "react";
-import { Motion, spring } from "react-motion";
-import { Helmet } from "react-helmet";
-import Nav from "../components/Nav";
-import Logo from "../components/Logo";
-import SocialIcons from "../components/SocialIcons";
-import "../styles/reset.css";
-import "../styles/common.scss";
-import { Abnormal, Main } from "../elements/main";
-import { colors } from "../elements/settings";
-import logoJpg from "../images/AbLogo.jpg";
+import React from 'react';
+import { Motion, spring } from 'react-motion';
+import { Helmet } from 'react-helmet';
+import Nav from '../components/Nav';
+import Logo from '../components/Logo';
+import SocialIcons from '../components/SocialIcons';
+import '../styles/reset.css';
+import '../styles/common.scss';
+import { Abnormal, Main } from '../elements/main';
+import { colors } from '../elements/settings';
+import logoJpg from '../images/AbLogo.jpg';
 
-const siteName = "ABNORMAL studio";
+const siteName = 'ABNORMAL studio';
 const keywords =
-  "agency, studio, web development, javascript, react, ruby, ruby on rails, shopify, threejs, web animation";
+  'agency, studio, web development, javascript, react, ruby, ruby on rails, shopify, threejs, web animation';
 const description =
-  "ABNORMAL studio is a small agency dedicated to making creative ideas accessible for everyone. We love challenges, no project is too small for us!";
-const siteUrl = "https://www.abnormalstudio.com";
+  'ABNORMAL studio is a small agency dedicated to making creative ideas accessible for everyone. We love challenges, no project is too small for us!';
+const siteUrl = 'https://www.abnormalstudio.com';
 const imageUrl = logoJpg;
 
 export default ({ children }) => (

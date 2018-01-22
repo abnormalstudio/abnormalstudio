@@ -54,13 +54,14 @@ const Contactcontent = styled.section`
   flex-direction: column;
 
   @media (max-width: 810px) {
+    width: 90%;
     font-size: 1rem;
     line-height: 1.5rem;
   }
 `;
 
 const Para = styled.p`
-  text-align: justify;
+  text-align: left;
   width: 80%;
   margin-bottom: ${margin.small};
 
@@ -82,11 +83,11 @@ const Linking = styled.a`
     color: ${colors.white};
   }
 
-  @media (max-width: 810px) {
+  @media (max-width: 520px) {
     display: block;
     width: 100%;
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.8rem;
   }
 `;
 
