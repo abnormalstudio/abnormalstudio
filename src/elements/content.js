@@ -88,6 +88,7 @@ const Linking = styled.a`
     width: 100%;
     font-size: 0.9rem;
     line-height: 1.8rem;
+    padding-left: 0px;
   }
 `;
 
