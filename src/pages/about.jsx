@@ -9,7 +9,9 @@ export default class About extends React.Component {
     return (
       <div>
         <Helmet>
-          <title>About Abnormal Studio</title>
+          <title>About | ABNORMAL studio</title>
+          <meta property="og:title" content="About | ABNORMAL studio" />
+          <meta name="twitter:title" content="About | ABNORMAL studio" />
         </Helmet>
 
         <Aboutcontent>

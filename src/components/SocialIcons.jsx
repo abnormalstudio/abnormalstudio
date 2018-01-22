@@ -1,12 +1,16 @@
-import React from 'react';
-import { FacebookButton, LinkedInButton, TwitterButton } from 'react-social';
-import SimpleLineIcon from 'react-simple-line-icons';
-import { SocialIcons } from '../elements/main';
-import { colors } from '../elements/settings';
+import React from "react";
+import { FacebookButton, LinkedInButton, TwitterButton } from "react-social";
+import SimpleLineIcon from "react-simple-line-icons";
+import { SocialIcons } from "../elements/main";
+import { colors } from "../elements/settings";
 
 export default () => (
   <SocialIcons>
-    <FacebookButton aria-label="Facebook" className="btn btn-social">
+    <FacebookButton
+      aria-label="Facebook"
+      className="btn btn-social"
+      appId="144478576347781"
+    >
       <SimpleLineIcon
         name="social-facebook"
         size="Large"

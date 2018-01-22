@@ -9,7 +9,9 @@ export default class Whatwedo extends React.Component {
     return (
       <div>
         <Helmet>
-          <title>Work | Abnormal Studio</title>
+          <title>What We Do | ABNORMAL studio</title>
+          <meta property="og:title" content="What We Do | ABNORMAL studio" />
+          <meta name="twitter:title" content="What We Do | ABNORMAL studio" />
         </Helmet>
 
         <Aboutcontent>

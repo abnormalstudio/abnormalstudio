@@ -21,7 +21,6 @@ export default class HomeScene {
 
     this.init();
     this.addLights();
-    // this.addFog();
     this.initPlane();
     this.initRaycasting();
     this.start();
@@ -63,7 +62,6 @@ export default class HomeScene {
       3000
     );
     this.camera.position.set(0, 0, 128);
-    // this.camera.lookAt(this.scene.position);
 
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -82,29 +80,20 @@ export default class HomeScene {
     const hemlight = new THREE.HemisphereLight(0xe5008d, 0xff070b, 0.5);
     this.scene.add(hemlight);
 
+    // white
     let light1 = new THREE.DirectionalLight(0xffffff, 0.5);
     light1.position.set(0, 0, 1);
-    light1.castShadow = true;
-    light1.shadowDarkness = 0.5;
-    light1.shadowCameraVisible = true;
     this.scene.add(light1);
 
     // fucsia
     let light2 = new THREE.DirectionalLight(0xea21a2, 0.8);
     light2.position.set(1, 1, -3);
-    light2.castShadow = true;
-    light2.shadowDarkness = 0.5;
-    light2.shadowCameraVisible = true;
     this.scene.add(light2);
 
     // light blue
     let light3 = new THREE.DirectionalLight(0x9ffbfb, 0.4);
     light3.position.set(3, -1, -2);
     this.scene.add(light3);
-  }
-
-  addFog() {
-    this.scene.fog = new THREE.FogExp2(0xfffb85, 0.0007);
   }
 
   // Updating renderer and camera on resize
@@ -118,6 +107,7 @@ export default class HomeScene {
     this.mouseMoved = true;
     this.mouseX = e.offsetX / this.width() * 2 - 1;
     this.mouseY = -(e.offsetY / this.height()) * 2 + 1;
+    this.fakeTouch();
   }
 
   handleTouch(e) {
@@ -125,8 +115,21 @@ export default class HomeScene {
       this.mouseMoved = true;
       this.mouseX = e.touches[0].offsetX - this.width() / 2;
       this.mouseY = -(e.touches[0].offsetY - this.height() / 2);
+      this.fakeTouch();
     }
   }
+
+  fakeTouch = () => {
+    if (this.fakeTouchTimeout) {
+      clearTimeout(this.fakeTouchTimeout);
+    }
+    this.fakeTouchTimeout = setTimeout(() => {
+      this.mouseMoved = true;
+      this.mouseX = Math.random() * 2 - 1; // rand between -1 and 1
+      this.mouseY = Math.random() * 2 - 1; // rand between -1 and 1
+      this.fakeTouch();
+    }, 2000);
+  };
 
   initPlane = () => {
     const materialColor = 0xcccccc;
@@ -167,7 +170,6 @@ export default class HomeScene {
     this.planeUniforms = material.uniforms;
 
     this.planeMesh = new THREE.Mesh(planeGeometry, material);
-    // this.planeMesh.rotation.x = -Math.PI / 6;
     this.planeMesh.matrixAutoUpdate = false;
     this.planeMesh.updateMatrix();
 
@@ -184,7 +186,6 @@ export default class HomeScene {
         visible: false
       })
     );
-    // this.meshRay.rotation.x = -Math.PI / 6;
     this.meshRay.matrixAutoUpdate = false;
     this.meshRay.updateMatrix();
 
@@ -266,6 +267,7 @@ export default class HomeScene {
   start = () => {
     this.looping = true;
     this.loop();
+    this.fakeTouch();
   };
 
   stop = () => {
