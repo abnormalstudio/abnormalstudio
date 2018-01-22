@@ -21,8 +21,7 @@ const Shader = styled.div`
 
 const Aboutcontent = styled.section`
   width: 60%;
-  height: 55vh;
-  display: block;
+  height: 100%;
   margin: 0 auto;
   font-family: ${fonts.body};
   font-size: 1.5rem;
@@ -41,8 +40,7 @@ const Aboutcontent = styled.section`
 
 const Contactcontent = styled.section`
   width: 60%;
-  height: 55vh;
-  display: block;
+  height: 100%;
   margin: 0 auto;
   font-family: ${fonts.body};
   font-size: 1.5rem;

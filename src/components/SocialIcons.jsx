@@ -23,14 +23,22 @@ export default () => (
         color={colors.greyish}
       />
     </FacebookShareButton>
-    <TwitterShareButton aria-label="Twitter" className="btn btn-social">
+    <TwitterShareButton
+      aria-label="Twitter"
+      className="btn btn-social"
+      url={"https://www.abnormalstudio.com"}
+    >
       <SimpleLineIcon
         name="social-twitter"
         size="Large"
         color={colors.greyish}
       />
     </TwitterShareButton>
-    <LinkedinShareButton aria-label="LinkedIn" className="btn btn-social">
+    <LinkedinShareButton
+      aria-label="LinkedIn"
+      className="btn btn-social"
+      url={"https://www.abnormalstudio.com"}
+    >
       <SimpleLineIcon
         name="social-linkedin"
         size="Large"
