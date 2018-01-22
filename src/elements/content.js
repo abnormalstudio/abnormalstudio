@@ -31,7 +31,12 @@ const Aboutcontent = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  scroll-y: scroll;
+
+  @media (max-width: 810px) {
+    width: 90%;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 `;
 
 const Contactcontent = styled.section`
@@ -47,10 +52,15 @@ const Contactcontent = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  scroll-y: scroll;
+
+  @media (max-width: 810px) {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 `;
 
 const Para = styled.p`
+  text-align: justify;
   width: 80%;
   margin-bottom: ${margin.small};
 
@@ -70,6 +80,13 @@ const Linking = styled.a`
 
   &:hover {
     color: ${colors.white};
+  }
+
+  @media (max-width: 810px) {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 `;
 

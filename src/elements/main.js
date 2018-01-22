@@ -25,6 +25,18 @@ const SocialIcons = styled.section`
   left: ${padding.small};
   top: 50%;
   transform: translateY(-50%);
+
+  @media (max-width: 810px) {
+    display: flex;
+    max-width: 100vw;
+    justify-content: flex-end;
+    top: 95%;
+    left: 70%;
+  }
+
+  @media (max-width: 520px) {
+    left: 60%;
+  }
 `;
 
 export { Main, SocialIcons };

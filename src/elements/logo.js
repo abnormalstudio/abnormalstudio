@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Link from "gatsby-link";
-import { padding, margin, fonts, colors } from "./settings";
+import styled from 'styled-components';
+import Link from 'gatsby-link';
+import { padding, margin, fonts, colors } from './settings';
 
 const LogoImage = styled.img`
   width: 180px;
@@ -13,6 +13,10 @@ const LogoLink = styled(Link)`
 
   &:hover {
     background: transparent;
+  }
+
+  @media (max-width: 810px) {
+    padding-top: 10%;
   }
 `;
 
