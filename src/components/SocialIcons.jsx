@@ -10,21 +10,21 @@ export default () => (
       <SimpleLineIcon
         name="social-facebook"
         size="Large"
-        color={colors.naranja}
+        color={colors.greyish}
       />
     </FacebookButton>
     <TwitterButton aria-label="Twitter" className="btn btn-social">
       <SimpleLineIcon
         name="social-twitter"
         size="Large"
-        color={colors.naranja}
+        color={colors.greyish}
       />
     </TwitterButton>
     <LinkedInButton aria-label="LinkedIn" className="btn btn-social">
       <SimpleLineIcon
         name="social-linkedin"
         size="Large"
-        color={colors.naranja}
+        color={colors.greyish}
       />
     </LinkedInButton>
   </SocialIcons>

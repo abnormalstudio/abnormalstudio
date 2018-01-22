@@ -29,9 +29,7 @@ a {
   transition: background 2s ease;
 
   &:hover {
-    background: -webkit-linear-gradient(#4568dc, #b06ab3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: #000;
   }
 }
 

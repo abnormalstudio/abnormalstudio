@@ -1,8 +1,8 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
-import { Aboutcontent, Para } from "../elements/content";
-import { Btn, GatsbyBtn } from "../elements/button";
+import { Aboutcontent, Para } from '../elements/content';
+import { Btn, GatsbyBtn } from '../elements/button';
 
 export default class About extends React.Component {
   render() {
@@ -22,12 +22,13 @@ export default class About extends React.Component {
           <Para>Do you have an idea?</Para>
 
           <Para centered>
-            <GatsbyBtn to="/whatwedo" style={{ width: "125px" }}>
+            <GatsbyBtn to="/whatwedo" style={{ width: '125px' }}>
               What we do
             </GatsbyBtn>
             <Btn
-              style={{ width: "125px" }}
+              style={{ width: '125px' }}
               href="mailto:studio@abnormalstudio.com"
+              target="_blank"
             >
               Lets talk!
             </Btn>
