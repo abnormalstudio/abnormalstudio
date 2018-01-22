@@ -80,19 +80,14 @@ export default class HomeScene {
     const hemlight = new THREE.HemisphereLight(0xe5008d, 0xff070b, 0.5);
     this.scene.add(hemlight);
 
+    // white
     let light1 = new THREE.DirectionalLight(0xffffff, 0.5);
     light1.position.set(0, 0, 1);
-    light1.castShadow = true;
-    light1.shadowDarkness = 0.5;
-    light1.shadowCameraVisible = true;
     this.scene.add(light1);
 
     // fucsia
     let light2 = new THREE.DirectionalLight(0xea21a2, 0.8);
     light2.position.set(1, 1, -3);
-    light2.castShadow = true;
-    light2.shadowDarkness = 0.5;
-    light2.shadowCameraVisible = true;
     this.scene.add(light2);
 
     // light blue
