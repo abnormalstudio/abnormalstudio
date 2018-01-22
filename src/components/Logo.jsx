@@ -1,19 +1,20 @@
-import React from 'react';
-import { LogoImage, LogoLink } from '../elements/logo';
-import logo from '../images/AbLogo.svg';
-import { TimelineLite, Bounce } from 'gsap';
+import React from "react";
+import { LogoImage, LogoLink } from "../elements/logo";
+import logo from "../images/AbLogo.svg";
+import { TimelineLite, Bounce } from "gsap";
 
 export default class Logo extends React.Component {
   componentDidMount() {
     const tl = new TimelineLite({ delay: 0.5 });
 
-    tl.from('.abnormal', 0.7, {
-      y: '-100%',
+    tl.set("svg", { opacity: 1 });
+    tl.from(".abnormal", 0.7, {
+      y: "-100%",
       opacity: 0,
       ease: Bounce.easeOut
     });
-    tl.from('.studio', 0.7, {
-      y: '100%',
+    tl.from(".studio", 0.7, {
+      y: "100%",
       opacity: 0,
       ease: Bounce.easeOut
     });
