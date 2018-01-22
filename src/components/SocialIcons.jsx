@@ -10,6 +10,7 @@ export default () => (
       aria-label="Facebook"
       className="btn btn-social"
       appId="144478576347781"
+      sharer={true}
     >
       <SimpleLineIcon
         name="social-facebook"
