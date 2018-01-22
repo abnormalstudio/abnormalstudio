@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { padding, margin, fonts, colors } from '../elements/settings';
+import styled, { css } from "styled-components";
+import { padding, margin, fonts, colors } from "../elements/settings";
 
 const Shader = styled.div`
   width: 100%;
@@ -84,11 +84,14 @@ const Linking = styled.a`
   }
 
   @media (max-width: 520px) {
-    display: block;
-    width: 100%;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.8rem;
-    padding-left: 0px;
+    padding: 0px;
+  }
+  @media (max-width: 520px) {
+    font-size: 0.85rem;
+    line-height: 2.1rem;
+    padding: 0px;
   }
 `;
 
