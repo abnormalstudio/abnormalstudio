@@ -8,6 +8,7 @@ import "../styles/reset.css";
 import "../styles/common.scss";
 import { Abnormal, Main } from "../elements/main";
 import { colors } from "../elements/settings";
+import logoJpg from "../images/AbLogo.jpg";
 
 const siteName = "ABNORMAL studio";
 const keywords =
@@ -15,7 +16,7 @@ const keywords =
 const description =
   "ABNORMAL studio is a small agency dedicated to making creative ideas accessible for everyone. We love challenges, no project is too small for us!";
 const siteUrl = "https://www.abnormalstudio.com";
-const imageUrl = "https://s3.amazonaws.com/abnormalstudio/abnormalstudio.jpg";
+const imageUrl = logoJpg;
 
 export default ({ children }) => (
   <div
