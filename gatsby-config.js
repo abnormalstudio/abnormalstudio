@@ -15,6 +15,12 @@ module.exports = {
         fonts: [`arapey`, `jura:300,400,400i,700`]
       }
     },
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-112963822-1"
+      }
+    }
   ]
 };

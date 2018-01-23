@@ -3173,6 +3173,12 @@ gatsby-plugin-accessibilityjs@^1.0.2:
     accessibilityjs "^1.1.0"
     babel-runtime "^6.26.0"
 
+gatsby-plugin-google-analytics@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-1.0.16.tgz#c2725313c1f802306f815680e4e959f5b5f5d46f"
+  dependencies:
+    babel-runtime "^6.26.0"
+
 gatsby-plugin-google-fonts@^0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-fonts/-/gatsby-plugin-google-fonts-0.0.3.tgz#36a09e7ed3b795b0a81e9404b4c487e0fdfa46ab"
@@ -6566,13 +6572,6 @@ react-simple-line-icons@^1.0.8:
     react "^15.6.1"
     react-dom "^15.6.1"
     simple-line-icons "^2.4.1"
-
-react-social@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/react-social/-/react-social-1.10.0.tgz#28c37f170a14b6f7f7c6b39576d659a34b3e3059"
-  dependencies:
-    create-react-class "^15.6.0"
-    prop-types "^15.5.10"
 
 react@^15.6.0, react@^15.6.1:
   version "15.6.2"
