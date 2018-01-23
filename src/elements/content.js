@@ -4,6 +4,7 @@ import { padding, margin, fonts, colors } from "../elements/settings";
 const Shader = styled.div`
   width: 100%;
   height: 100%;
+  overflow: hidden;
   background: rgba(0, 0, 0, 0.6); /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -68,6 +69,14 @@ const Para = styled.p`
     css`
       text-align: center;
     `};
+
+  @media (max-width: 520px) {
+    font-size: 0.85rem;
+  }
+
+  @media (max-height: 625px) {
+    margin-bottom: ${margin.superSmall};
+  }
 `;
 
 const Linking = styled.a`
@@ -82,13 +91,8 @@ const Linking = styled.a`
   }
 
   @media (max-width: 520px) {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     line-height: 1.8rem;
-    padding: 0px;
-  }
-  @media (max-width: 520px) {
-    font-size: 0.85rem;
-    line-height: 2.1rem;
     padding: 0px;
   }
 `;

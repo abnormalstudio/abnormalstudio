@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import Link from 'gatsby-link';
+import styled from "styled-components";
+import Link from "gatsby-link";
 
-import { padding, margin, fonts, colors } from './settings';
+import { padding, margin, fonts, colors } from "./settings";
 
 const Navigation = styled.nav`
   width: 100vw;
@@ -31,6 +31,10 @@ const NavLink = styled(Link)`
 
   &:hover {
     color: ${colors.white};
+  }
+
+  @media (max-width: 520px) {
+    font-size: 0.85rem;
   }
 `;
 

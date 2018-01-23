@@ -41,7 +41,8 @@ const SocialIcons = styled.section`
   }
 
   @media (max-width: 520px) {
-    left: 60%;
+    left: auto;
+    right: 11%;
   }
 `;
 
