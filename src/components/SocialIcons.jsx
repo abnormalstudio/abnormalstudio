@@ -10,12 +10,17 @@ const {
   TwitterShareButton
 } = ShareButtons;
 
+const url = "https://www.abnormalstudio.com";
+const title =
+  "ABNORMAL studio is a small agency dedicated to making creative ideas accessible for everyone. We love challenges, no project is too small for us!";
+
 export default () => (
   <SocialIcons>
     <FacebookShareButton
       aria-label="Facebook"
       className="btn btn-social"
-      url={"https://www.abnormalstudio.com"}
+      url={url}
+      quote={title}
     >
       <SimpleLineIcon
         name="social-facebook"
@@ -26,7 +31,8 @@ export default () => (
     <TwitterShareButton
       aria-label="Twitter"
       className="btn btn-social"
-      url={"https://www.abnormalstudio.com"}
+      url={url}
+      title={title}
     >
       <SimpleLineIcon
         name="social-twitter"
@@ -37,7 +43,8 @@ export default () => (
     <LinkedinShareButton
       aria-label="LinkedIn"
       className="btn btn-social"
-      url={"https://www.abnormalstudio.com"}
+      url={url}
+      title={title}
     >
       <SimpleLineIcon
         name="social-linkedin"
