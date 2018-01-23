@@ -11,13 +11,21 @@ const BOUNDS = 1028;
 const WIDTH = 254;
 
 export default class HomeScene {
-  constructor(container) {
+  constructor() {
     // Defining all required variables
-    this.container = container;
     this.mouseX = 0;
     this.mouseY = 0;
     this.mouseMoved = false;
     this.looping = true;
+
+    this.renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true
+    });
+  }
+
+  setup = container => {
+    this.container = container;
 
     this.init();
     this.addLights();
@@ -42,7 +50,11 @@ export default class HomeScene {
       e => this.handleTouch(e),
       false
     );
-  }
+  };
+
+  supported = () => {
+    return this.renderer.extensions.get("OES_texture_float_linear");
+  };
 
   width() {
     return this.container.clientWidth;
@@ -63,10 +75,6 @@ export default class HomeScene {
     );
     this.camera.position.set(0, 0, 128);
 
-    this.renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      antialias: true
-    });
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(this.width(), this.height());
 

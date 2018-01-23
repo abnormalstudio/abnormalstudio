@@ -16,7 +16,7 @@ const LogoLink = styled(Link)`
   }
 
   @media (max-width: 810px) {
-    padding-top: 10%;
+    padding-left: 5%;
   }
 `;
 

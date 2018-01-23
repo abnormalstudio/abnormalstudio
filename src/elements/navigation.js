@@ -6,6 +6,10 @@ import { padding, margin, fonts, colors } from "./settings";
 const Navigation = styled.nav`
   width: 100vw;
   margin-top: ${margin.medium};
+
+  @media (max-width: 810px) {
+    margin-top: calc(${margin.small} - 10px);
+  }
 `;
 
 const NavList = styled.ul`

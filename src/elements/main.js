@@ -21,6 +21,10 @@ const Main = styled.main`
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   overflow-y: scroll;
 
+  @media (max-width: 810px) {
+    width: 90vw;
+  }
+
   @media (max-height: 700px) {
     height: 50vh;
   }

@@ -1,11 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import HomeScene from '../HomeScene';
-import { Shader } from '../elements/content';
+import HomeScene from "../HomeScene";
+import { Shader } from "../elements/content";
 
 export default class Index extends React.Component {
+  componentWillMount() {
+    this.homeScene = new HomeScene();
+  }
+
   componentDidMount() {
-    this.homeScene = new HomeScene(this.div);
+    if (this.homeScene.supported()) {
+      this.homeScene.setup(this.div);
+    }
   }
 
   componentWillUnmount() {
