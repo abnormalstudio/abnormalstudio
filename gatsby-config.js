@@ -21,6 +21,18 @@ module.exports = {
       options: {
         trackingId: "UA-112963822-1"
       }
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "ABNORMAL studio",
+        lang: "en-US",
+        short_name: "ABNORMAL",
+        start_url: "/",
+        background_color: "#ffffff",
+        theme_color: "rgba(221,36,118,1)",
+        display: "browser"
+      }
     }
   ]
 };
